@@ -1,20 +1,24 @@
 <template>
-  <section>
-    <Navigation />
-    <main>
-      <PokeCards/>
-    </main>
-  </section>
+  <main>
+    <PokeCards :pokemons="pokemons"/>
+  </main>
 </template>
 
 <script>
-import Navigation from '../components/Navigation';
 import PokeCards from '../components/PokeCards';
+import Service from '../sevices';
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      pokemons: [],
+    };
+  },
+  async mounted() {
+    this.pokemons = await Service.getPokemonsData();
+  },
   components: {
-    Navigation,
     PokeCards,
   }
 }

@@ -1,10 +1,6 @@
 <template>
   <section class="card__container">
-    <PokeCard/>
-    <PokeCard/>
-    <PokeCard/>
-    <PokeCard/>
-    <PokeCard/>
+    <PokeCard v-for="pokemon in pokemons" :key="pokemon.id" :pokemon="pokemon"/>
   </section>
 </template>
 
@@ -13,6 +9,13 @@ import PokeCard from './PokeCard';
 
 export default {
   name: 'PokeCards',
+  props: {
+    pokemons: {
+      default: () => [],
+      required: true,
+      type: Array,
+    }
+  },
   components: {
     PokeCard,
   }
@@ -23,5 +26,6 @@ export default {
 .card__container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

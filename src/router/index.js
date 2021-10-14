@@ -14,7 +14,14 @@ export default new Router({
       path: '/detail/:id',
       props: true,
       name: 'detail',
-      component: () => import(/* webpackChunkName: "detail" */ '../components/DetailCard.vue')
+      component: () => import(/* webpackChunkName: "detail" */ '../components/DetailCard.vue'),
+      beforeEnter: (to, from, next) => {
+        if(to.params.pokemon) {
+          next()
+        } else {
+          next({ name: 'home' })
+        }
+      }
     },
   ]
 });

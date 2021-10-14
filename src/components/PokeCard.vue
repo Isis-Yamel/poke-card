@@ -2,6 +2,12 @@
   <article @click="getDetail(pokemon)" :id="pokemon.id" class="card__wrapper">
     <h2> {{ pokemon.name }} </h2>
     <img class="card__image" :src="pokemon.sprites.front_default" />
+    <h3> Pokemon type </h3>
+    <ul>
+      <li v-for="pokeType, index in pokemon.types" :key="index">
+        {{ pokeType.type.name }}
+      </li>
+    </ul>
   </article>
 </template>
 
@@ -29,15 +35,16 @@ export default {
   background: linear-gradient(0deg, rgba(227,168,96,1) 13%, rgba(213,63,50,1) 91%);
   border-radius: 10px;
   border: none;
-  color: white;
+  color: #fff;
   cursor: pointer;
   margin: 10px;
   padding: 25px;
   width: 250px;
 }
 
-.card__wraper:hover {
-  transform: scale(1.1);
+article:hover {
+  background: #f0f0f0;
+  color: #000;
 }
 
 .card__image {

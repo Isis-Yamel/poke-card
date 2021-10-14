@@ -11,7 +11,7 @@ const apiClient = axios.create({
 async function getPokemons() {
   let response;
   try {
-    response = await apiClient.get('/pokemon');
+    response = await apiClient.get('/pokemon?limit=50');
   } catch(err) {
     console.log(err);
   }
@@ -24,5 +24,14 @@ export default {
     let pokemonData = data.map(pokeball => axios.get(pokeball.url));
 
     return Promise.all(pokemonData).then(pokemons => pokemons.map(pokemon => pokemon.data));
+  },
+  async getPokemonsTypes() {
+    let response;
+    try {
+      response = await apiClient.get('/type');
+    } catch(err) {
+      console.log(err);
+    }
+    return response.data.results;
   },
 };
